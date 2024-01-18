@@ -17,7 +17,7 @@ jobs:
       - name: Use Node.js 16.x and configure Yarn 📦
         uses: actions/setup-node@v1
         with:
-          node-version: '16.x'
+          node-version: 'latest'
       - name: Install Yarn
         run: npm install -g yarn
       - name: Installing my packages with Yarn
