@@ -29,6 +29,6 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: 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
           BRANCH: gh-pages # The branch the action should deploy to, and GitHub takes gh-pages
           FOLDER: .output/public # The folder the action should deploy Nuxt to .output/public
