@@ -2,7 +2,7 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 export default defineNuxtConfig({
   //...
   app: {
-    baseURL: '/snkr-club-frontend/',
+    baseURL: '/',
   },
   build: {
     transpile: ['vuetify'],
@@ -23,4 +23,7 @@ export default defineNuxtConfig({
       },
     },
   },
+  css: [
+    '@/assets/css/main.css',
+  ],
 })

@@ -1,7 +1,5 @@
 <template>
   <div>
-    <p>Current route: {{ route.path }}</p>
-    <v-btn color="red">Hello</v-btn>
   </div>
 </template>
 
