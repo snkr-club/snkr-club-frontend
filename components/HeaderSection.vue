@@ -23,8 +23,7 @@
     .outer-container {
         min-height: 37.25rem;
         width: 100%;
-        border: 2px dotted red;
-        background-color: #00acc1;
+        //background-color: #00acc1;
     }
 
     .inner-container {
@@ -32,7 +31,6 @@
         min-height: 37.25rem;
         margin: 0 auto;
         padding-top: 7rem;
-        padding-left: 0.5rem;
     }
 
     .title {

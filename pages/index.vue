@@ -1,6 +1,7 @@
 <template>
   <div>
       <header-section />
+      <header-banner />
   </div>
 </template>
 
