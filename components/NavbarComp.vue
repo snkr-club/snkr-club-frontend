@@ -74,14 +74,16 @@ import { NuxtLink } from '#build/components';
 
 <style scoped lang="scss">
 .outer-container {
-    max-width: 74rem;
+    width: 74rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    position: sticky;
+    position: fixed;
     top: 0;
-    margin: 0 auto;
+    left: 50%;
+    transform: translate(-50%);
+    float: top;
     gap: 6rem;
 }
 
@@ -110,5 +112,12 @@ import { NuxtLink } from '#build/components';
 
 .v-divider {
     border-width: 1px;
+}
+
+.logo {
+    h4 {
+        font-size: 1.5rem;
+        white-space: nowrap;
+    }
 }
 </style>
