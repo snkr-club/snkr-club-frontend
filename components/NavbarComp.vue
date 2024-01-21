@@ -84,6 +84,7 @@ import { NuxtLink } from '#build/components';
     transform: translate(-50%);
     float: top;
     gap: 6rem;
+    z-index: 1000;
 }
 
 .option-selector {

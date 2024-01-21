@@ -6,8 +6,8 @@
             <v-btn
                 theme="dark"
                 class="mt-11 outline-effect-btn"
-                min-width="200"
-                min-height="45"
+                min-width="230"
+                min-height="50"
                 variant="flat"
             >
                 VEZI MAI MULTE
@@ -48,5 +48,6 @@
     .subtitle {
         font-size: 2.2rem;
         font-weight: bold;
+        color: #111111;
     }
 </style>
