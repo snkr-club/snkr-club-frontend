@@ -2,6 +2,7 @@
   <div>
       <header-section />
       <header-banner />
+      <new-products-section />
   </div>
 </template>
 
