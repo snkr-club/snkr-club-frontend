@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <g id="Group_35" data-name="Group 35" transform="translate(-876 -2986)">
+    <rect id="Rectangle_32" data-name="Rectangle 32" width="40" height="40" transform="translate(876 2986)" fill="#111"/>
+    <g id="Group_33" data-name="Group 33" transform="translate(0 -2)">
+      <g id="Shopicons_Filled_ArrowForward" transform="translate(889.593 2997.593)">
+        <path id="Path_9" data-name="Path 9" d="M0,0H20.813V20.813H0Z" fill="none"/>
+        <g id="Shopicon" transform="translate(6.325 2.855)">
+          <g id="Group_32" data-name="Group 32">
+            <path id="Path_10" data-name="Path 10" d="M14.586,7.811l6.324,6.325-6.324,6.325,1.226,1.226,7.551-7.551L15.812,6.585Z" transform="translate(-14.586 -6.585)" fill="#fff"/>
+          </g>
+        </g>
+      </g>
+      <rect id="Rectangle_33" data-name="Rectangle 33" width="18" height="1.5" transform="translate(885 3007.25)" fill="#fff"/>
+    </g>
+  </g>
+</svg>
