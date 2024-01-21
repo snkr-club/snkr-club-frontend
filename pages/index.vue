@@ -6,6 +6,7 @@
       <about-us-section />
       <small-product-list-section title="REDUCERI" />
       <collections-section />
+      <social-banner-comp />
   </div>
 </template>
 
