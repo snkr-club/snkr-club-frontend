@@ -1,7 +1,7 @@
 <template>
     <div class="outer-container">
         <div class="inner-container">
-            <h1 class="title mb-6">NOUTATI</h1>
+            <h1 class="title mb-6">{{props.title}}</h1>
             <div class="product-horizontal-list">
                 <product-comp />
                 <product-comp />
@@ -13,7 +13,13 @@
 </template>
 
 <script setup lang="ts">
-
+const props = defineProps({
+    title: {
+        type: String,
+        default: "Produse"
+    },
+    // TODO AICI VINE PROP UL DE PRODUCT LIST, APOI RENDER CU V-FOR
+})
 </script>
 
 <style scoped lang="scss">

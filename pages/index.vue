@@ -2,13 +2,12 @@
   <div>
       <header-section />
       <header-banner />
-      <new-products-section />
+      <small-product-list-section title="NOUTATI" />
   </div>
 </template>
 
 
 <script setup lang="ts">
-const route = useRoute()
 </script>
 
 <style scoped lang="scss">
