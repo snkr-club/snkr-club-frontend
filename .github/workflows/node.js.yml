@@ -4,31 +4,31 @@
 name: GitHub Pages deploy
 
 on:
-  push:
-    branches: [master]
+    push:
+        branches: [master]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkouts 🛎️
-        uses: actions/checkout@v2.3.1
-      - name: Use Node.js 16.x and configure Yarn 📦
-        uses: actions/setup-node@v1
-        with:
-          node-version: '20.x'
-      - name: Install Yarn
-        run: npm install -g yarn
-      - name: Installing my packages with Yarn
-        run: yarn install
+        steps:
+            - name: Checkouts 🛎️
+              uses: actions/checkout@v2.3.1
+            - name: Use Node.js 16.x and configure Yarn 📦
+              uses: actions/setup-node@v1
+              with:
+                  node-version: '20.x'
+            - name: Install Yarn
+              run: npm install -g yarn
+            - name: Installing my packages with Yarn
+              run: yarn install
 
-      - name: Build / Generate my App
-        run: yarn generate && touch ./.output/.nojekyll # Must be Yarn generate
+            - name: Build / Generate my App
+              run: yarn generate && touch ./.output/.nojekyll # Must be Yarn generate
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.3.3
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages # The branch the action should deploy to, and GitHub takes gh-pages
-          FOLDER: .output/public # The folder the action should deploy Nuxt to .output/public
+            - name: Deploy 🚀
+              uses: JamesIves/github-pages-deploy-action@v4.3.3
+              with:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  BRANCH: gh-pages # The branch the action should deploy to, and GitHub takes gh-pages
+                  FOLDER: .output/public # The folder the action should deploy Nuxt to .output/public

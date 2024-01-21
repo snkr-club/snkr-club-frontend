@@ -9,7 +9,7 @@ import * as directives from 'vuetify/directives'
 export default defineNuxtPlugin((app) => {
     const vuetify = createVuetify({
         components,
-        directives
+        directives,
     })
     app.vueApp.use(vuetify)
 })
