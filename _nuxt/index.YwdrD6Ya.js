@@ -1,1 +1,0 @@
-import{d as t,L as a,v as o,x as r,y as s,M as n,z as c,A as l,V as u,t as d,B as p}from"./entry.uppNH6Nw.js";const x=t({__name:"index",setup(_){const e=a();return(i,f)=>(d(),o("div",null,[r("p",null,"Current route: "+s(n(e).path),1),c(u,{color:"red"},{default:l(()=>[p("Hello")]),_:1})]))}});export{x as default};
