@@ -1,9 +1,8 @@
-
 import { NuxtLink } from '#build/components';
 <template>
     <div class="outer-container">
         <div class="logo">
-            <h4>SNKR X CLUB</h4>
+            <img src="/logo.svg" />
         </div>
         <div class="option-selector">
             <NuxtLink to="/" class="test">
@@ -112,12 +111,5 @@ import { NuxtLink } from '#build/components';
 
 .v-divider {
     border-width: 1px;
-}
-
-.logo {
-    h4 {
-        font-size: 1.5rem;
-        white-space: nowrap;
-    }
 }
 </style>

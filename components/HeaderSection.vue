@@ -5,7 +5,7 @@
             <h2 class="subtitle">REDUCERI DE PANA LA -30%</h2>
             <v-btn
                 theme="dark"
-                class="mt-12 outline-effect-btn"
+                class="mt-11 outline-effect-btn"
                 min-width="200"
                 min-height="45"
                 variant="flat"
@@ -21,31 +21,32 @@
 
 <style scoped lang="scss">
     .outer-container {
-        min-height: 37.25rem;
+        min-height: 30rem !important;
         width: 100%;
-        //background-color: #00acc1;
+        background-image: url("/hero-img.png");
+        background-repeat: no-repeat;
+        background-size: contain !important;
+        background-position: right;
     }
 
     .inner-container {
         max-width: 74rem;
-        min-height: 37.25rem;
+        min-height: 30rem;
         margin: 0 auto;
         padding-top: 7rem;
     }
 
     .title {
-        font-size: 5rem;
+        font-size: 4rem;
         font-weight: bold;
         width: 50rem;
         color: #111111;
-        line-height: 6rem;
-        margin-bottom: 1.3rem;
+        line-height: 4.5rem;
+        margin-bottom: 0.8rem;
     }
 
     .subtitle {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
         font-weight: bold;
     }
-
-
 </style>
