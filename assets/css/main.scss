@@ -48,10 +48,10 @@ body {
   background-color: #ffffff !important;
   border-radius: 0 !important;
   transform-style: preserve-3d;
+  overflow: visible !important;
   &::before,
   &::after {
     transform: translateZ(-1px);
-    overflow: auto;
     content: "" !important;
     position: absolute !important;
     top: 6px !important;
