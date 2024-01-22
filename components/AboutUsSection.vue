@@ -33,6 +33,7 @@
         background-color: #111111;
         background-size: contain;
         background-repeat: repeat;
+        background-attachment: fixed;
     }
 
     .inner-container {
