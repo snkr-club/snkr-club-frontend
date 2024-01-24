@@ -64,16 +64,55 @@ import { NuxtLink } from '#build/components';
             >
             </v-btn>
         </div>
+        <div class="d-flex align-center responsive-show">
+            <div class="d-flex ga-3">
+                <v-btn
+                    icon="mdi-heart"
+                    theme="dark"
+                    color="#111111"
+                    size="36"
+                >
+                </v-btn>
+                <v-btn
+                    icon="mdi-account"
+                    theme="dark"
+                    color="#111111"
+                    size="36"
+                >
+                </v-btn>
+                <v-btn
+                    icon="mdi-cart"
+                    theme="dark"
+                    color="#111111"
+                    size="36"
+                >
+                </v-btn>
+            </div>
+            <v-divider
+                vertical
+                color="#111111"
+                class="border-opacity-100 ml-4 mr-2"
+            />
+            <v-btn
+                icon="mdi-menu"
+                variant="text"
+                @click="emit('drawerToggle')"
+            >
+            </v-btn>
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
 
+const emit = defineEmits(["drawerToggle"])
+
 </script>
 
 <style scoped lang="scss">
 .outer-container {
-    width: 74rem;
+    max-width: 74rem;
+    //width: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -82,7 +121,6 @@ import { NuxtLink } from '#build/components';
     top: 0;
     left: 50%;
     transform: translate(-50%);
-    float: top;
     gap: 6rem;
     z-index: 1000;
 }
@@ -112,5 +150,21 @@ import { NuxtLink } from '#build/components';
 
 .v-divider {
     border-width: 1px;
+}
+
+.responsive-show {
+    display: none !important;
+}
+
+@media only screen and (max-width: 1180px) {
+    .option-selector {
+        display: none;
+    }
+    .outer-container {
+        width: 100%;
+    }
+    .responsive-show {
+        display: flex !important;
+    }
 }
 </style>
