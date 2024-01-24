@@ -1,0 +1,7 @@
+<svg id="Shopicons_Regular_Clock" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <path id="Path_530" data-name="Path 530" d="M0,0H24V24H0Z" fill="none"/>
+  <g id="Shopicon" transform="translate(2 2)">
+    <path id="Path_531" data-name="Path 531" d="M14,4A10,10,0,1,0,24,14,10,10,0,0,0,14,4Zm0,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,14,22Z" transform="translate(-4 -4)"/>
+    <path id="Path_532" data-name="Path 532" d="M24,14H22v6h6V18H24Z" transform="translate(-13 -9)"/>
+  </g>
+</svg>
