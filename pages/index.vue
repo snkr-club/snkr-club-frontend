@@ -8,7 +8,7 @@
       <collections-section />
       <social-banner-comp />
       <small-product-list-section title="CELE MAI VANDUTE" />
-<!--      <newsletter-section />-->
+      <newsletter-section />
       <small-product-list-section title="LIMITED EDITION" />
   </div>
 </template>

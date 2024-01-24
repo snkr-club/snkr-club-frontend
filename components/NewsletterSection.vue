@@ -3,32 +3,42 @@
         <div class="newsletter-inner">
             <h1>NEWSLETTER</h1>
             <p>Primeste noutati despre ultimele colectii si reduceri.</p>
-            <div class="newsletter-half-container mt-12">
-                <div class="newsletter-img account-bg"></div>
-                <v-text-field
-                    class="newsletter-text-field"
-                    hide-details
-                    placeholder="NUME"
-                />
-                <div class="newsletter-img mail-bg"></div>
-                <v-text-field
-                    class="newsletter-text-field"
-                    hide-details
-                    placeholder="EMAIL"
-                />
-            </div>
-            <div class="newsletter-half-container">
-                <div class="newsletter-text-container">
-                    <p>Fara spam, doar snkrs!</p>
+            <div class="newsletter-half-wrapper">
+                <div class="newsletter-half-container mt-12">
+                    <div class="newsletter-quarter-container">
+                        <div class="newsletter-img account-bg"></div>
+                        <v-text-field
+                            class="newsletter-text-field"
+                            hide-details
+                            label="NUME"
+                        />
+                    </div>
+                    <div class="newsletter-quarter-container">
+                        <div class="newsletter-img mail-bg"></div>
+                        <v-text-field
+                            class="newsletter-text-field"
+                            hide-details
+                            label="EMAIL"
+                        />
+                    </div>
                 </div>
-                <v-btn
-                    theme="dark"
-                    color="#A38D58"
-                    class="newsletter-btn"
-                >
-                    MA ABONEZ
-                    <v-icon class="ml-3">mdi-arrow-right</v-icon>
-                </v-btn>
+                <div class="newsletter-half-container">
+                    <div class="newsletter-quarter-container">
+                        <div class="newsletter-text-container">
+                            <p>Fara spam, doar snkrs!</p>
+                        </div>
+                    </div>
+                    <div class="newsletter-quarter-container">
+                        <v-btn
+                            theme="dark"
+                            color="#A38D58"
+                            class="newsletter-btn"
+                        >
+                            MA ABONEZ
+                            <v-icon class="ml-3">mdi-arrow-right</v-icon>
+                        </v-btn>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -64,7 +74,7 @@
 
     .newsletter-half-container {
         display: flex;
-        max-width: 50%;
+        max-width: 37rem;
         .newsletter-text-field {
             :deep(.v-field__input) {
                 height: 68px !important;
@@ -85,7 +95,7 @@
             background-image: url("/SVG/mail.svg");
         }
         .newsletter-text-container {
-            width: 50%;
+            width: 100%;
             border: 1px solid white;
             height: 70px;
             p {
@@ -98,11 +108,40 @@
         }
         .newsletter-btn {
             border-radius: 0 !important;
-            width: 50%;
+            width: 100%;
             height: 71px;
             border-left: 1px solid white;
             border-top: 1px solid white;
             font-size: 20px;
+        }
+    }
+
+    .newsletter-half-wrapper {
+        max-width: 37rem;
+    }
+
+    .newsletter-quarter-container {
+        width: 50%;
+        display: flex;
+        min-width: 18rem;
+    }
+
+    @media only screen and (max-width: 850px) {
+        .newsletter-inner {
+            text-align: center;
+        }
+        .newsletter-half-wrapper {
+            margin: 0 auto !important;
+            padding: 1rem;
+            justify-content: center;
+        }
+        .newsletter-half-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        h1 {
+            font-size: 3.5rem !important;
         }
     }
 </style>
