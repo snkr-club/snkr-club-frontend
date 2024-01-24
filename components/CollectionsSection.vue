@@ -5,7 +5,7 @@
                 <v-card class="collection-btn outline-effect-btn-white" @click="() => console.log('test')">
                     <template v-slot:prepend>
                         <h3>NIKE AIRFORCE 1</h3>
-                        <p>Descopera toata colectia de AirForce 1</p>
+                        <p>Descopera colectia AirForce 1</p>
                     </template>
                     <template v-slot:append>
                         <img src="/arrow-right.svg" />
@@ -72,7 +72,7 @@
         background-color: #00acc1;
         min-height: 300px;
         //max-width: 850px;
-        min-width: 300px;
+        min-width: 350px;
         position: relative;
     }
 
