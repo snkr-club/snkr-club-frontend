@@ -118,4 +118,10 @@
             width: 45px;
         }
     }
+
+    @media only screen and (max-width: 480px) {
+        .collection-btn {
+            min-width: 340px;
+        }
+    }
 </style>
