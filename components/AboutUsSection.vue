@@ -15,7 +15,7 @@
                 </v-btn>
             </div>
             <div class="half-container">
-                <v-img src="/desprenoi.png" />
+                <v-img src="/desprenoi.png" class="about-image" />
             </div>
         </div>
     </div>
@@ -40,12 +40,14 @@
         max-width: 74rem;
         min-height: 30rem;
         margin: 0 auto;
-        padding: 3rem 0;
+        padding: 3rem 0.5rem;
         display: flex;
+        flex-wrap: wrap;
     }
 
     .half-container {
         flex: 1 1 50%;
+        //min-width: 30rem;
     }
 
     .title {
@@ -64,5 +66,23 @@
         color: white;
         max-width: 27rem;
         margin-bottom: 3rem;
+    }
+
+    @media only screen and (max-width: 960px) {
+        .inner-container {
+            text-align: center;
+            gap: 3rem;
+        }
+        .title {
+            margin: 0 auto;
+            font-size: 3.8rem;
+        }
+        .subtitle {
+            margin: 0 auto;
+        }
+        .about-image {
+            max-width: 40rem;
+            margin: 0 auto;
+        }
     }
 </style>

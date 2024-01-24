@@ -3,7 +3,7 @@
       <header-section />
       <header-banner />
       <small-product-list-section title="NOUTATI" />
-<!--      <about-us-section />-->
+      <about-us-section />
       <small-product-list-section title="REDUCERI" />
 <!--      <collections-section />-->
 <!--      <social-banner-comp />-->
