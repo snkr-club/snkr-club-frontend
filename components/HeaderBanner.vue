@@ -53,4 +53,12 @@
             color: white;
         }
     }
+    @media only screen and (max-width: 850px) {
+        .inner-container {
+            padding: 1rem 0;
+        }
+        .info-container {
+            margin: 0.3rem 0;
+        }
+    }
 </style>

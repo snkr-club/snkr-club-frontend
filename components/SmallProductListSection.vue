@@ -32,7 +32,7 @@ const props = defineProps({
     .inner-container {
         max-width: 74rem;
         margin: 0 auto;
-        padding: 5rem 0;
+        padding: 5rem 0.5rem;
         //background-color: turquoise;
         min-height: 37.25rem;
     }
@@ -40,5 +40,20 @@ const props = defineProps({
     .title {
         font-size: 3rem;
         font-weight: bold;
+    }
+
+    .product-horizontal-list {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    @media only screen and (max-width: 1175px) {
+        .product-horizontal-list {
+            justify-content: center;
+        }
+        .title {
+            text-align: center;
+        }
     }
 </style>
