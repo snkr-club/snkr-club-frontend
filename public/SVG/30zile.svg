@@ -1,0 +1,8 @@
+<svg id="Shopicons_Regular_Eco5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <path id="Path_533" data-name="Path 533" d="M0,0H24V24H0Z" fill="none"/>
+  <g id="Shopicon" transform="translate(1.105 2)">
+    <path id="Path_534" data-name="Path 534" d="M8.616,10.836,7.839,8.993,6.447,9.58A7.993,7.993,0,0,1,21.1,14h2A9.989,9.989,0,0,0,4.6,8.771L4.1,7.311l-1.894.641,1.653,4.887Z" transform="translate(-2.209 -4)"/>
+    <path id="Path_535" data-name="Path 535" d="M18.489,27.164l.777,1.843,1.392-.587A7.994,7.994,0,0,1,6,24H4a9.99,9.99,0,0,0,18.507,5.229L23,30.689l1.895-.64-1.653-4.887Z" transform="translate(-3.105 -14)"/>
+  </g>
+  <text id="_30" data-name="30" transform="translate(7 15.5)" fill="#111" font-size="8" font-family="SpaceGrotesk-Bold, Space Grotesk" font-weight="700" letter-spacing="-0.02em"><tspan x="0" y="0">30</tspan></text>
+</svg>

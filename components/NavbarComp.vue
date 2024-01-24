@@ -1,9 +1,8 @@
-
 import { NuxtLink } from '#build/components';
 <template>
     <div class="outer-container">
         <div class="logo">
-            <h4>SNKR X CLUB</h4>
+            <img src="/logo.svg" />
         </div>
         <div class="option-selector">
             <NuxtLink to="/" class="test">
@@ -65,16 +64,27 @@ import { NuxtLink } from '#build/components';
             >
             </v-btn>
         </div>
+        <div class="d-flex align-center responsive-show">
+            <v-btn
+                icon="mdi-menu"
+                variant="text"
+                @click="emit('drawerToggle')"
+            >
+            </v-btn>
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
 
+const emit = defineEmits(["drawerToggle"])
+
 </script>
 
 <style scoped lang="scss">
 .outer-container {
-    width: 74rem;
+    max-width: 74rem;
+    //width: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -83,8 +93,8 @@ import { NuxtLink } from '#build/components';
     top: 0;
     left: 50%;
     transform: translate(-50%);
-    float: top;
     gap: 6rem;
+    z-index: 1000;
 }
 
 .option-selector {
@@ -114,10 +124,19 @@ import { NuxtLink } from '#build/components';
     border-width: 1px;
 }
 
-.logo {
-    h4 {
-        font-size: 1.5rem;
-        white-space: nowrap;
+.responsive-show {
+    display: none !important;
+}
+
+@media only screen and (max-width: 1180px) {
+    .option-selector {
+        display: none;
+    }
+    .outer-container {
+        width: 100%;
+    }
+    .responsive-show {
+        display: flex !important;
     }
 }
 </style>

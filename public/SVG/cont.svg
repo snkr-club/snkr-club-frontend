@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="Group_28" data-name="Group 28" transform="translate(-1470 -36)">
+    <circle id="Ellipse_5" data-name="Ellipse 5" cx="16" cy="16" r="16" transform="translate(1470 36)" fill="#111"/>
+    <g id="Shopicons_Filled_Account" transform="translate(1476.439 42.439)">
+      <path id="Path_4" data-name="Path 4" d="M0,0H19.123V19.123H0Z" fill="none"/>
+      <g id="Shopicon" transform="translate(1.992 1.594)">
+        <path id="Path_5" data-name="Path 5" d="M16.491,26.914l-3.921,3.62-3.921-3.62A8.048,8.048,0,0,0,5,33.721H20.139A8.048,8.048,0,0,0,16.491,26.914Z" transform="translate(-5 -17.785)" fill="#fff"/>
+        <path id="Path_6" data-name="Path 6" d="M16.781,13.561a4.794,4.794,0,1,0-3.556-1.594A4.762,4.762,0,0,0,16.781,13.561Z" transform="translate(-9.211 -4)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>
