@@ -39,7 +39,7 @@
     .title {
         font-size: 4rem;
         font-weight: bold;
-        width: 50rem;
+        max-width: 50rem;
         color: #111111;
         line-height: 4.5rem;
         margin-bottom: 0.8rem;
@@ -50,4 +50,22 @@
         font-weight: bold;
         color: #111111;
     }
+
+    @media only screen and (max-width: 850px) {
+        .inner-container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.2);
+            padding-bottom: 2rem !important;
+        }
+        .outer-container {
+            background-size: cover !important;
+        }
+        .title {
+            font-size: 3rem;
+        }
+        .subtitle {
+            font-size: 1.8rem;
+        }
+    }
+    
 </style>

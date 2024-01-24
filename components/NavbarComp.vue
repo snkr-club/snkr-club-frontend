@@ -65,34 +65,6 @@ import { NuxtLink } from '#build/components';
             </v-btn>
         </div>
         <div class="d-flex align-center responsive-show">
-            <div class="d-flex ga-3">
-                <v-btn
-                    icon="mdi-heart"
-                    theme="dark"
-                    color="#111111"
-                    size="36"
-                >
-                </v-btn>
-                <v-btn
-                    icon="mdi-account"
-                    theme="dark"
-                    color="#111111"
-                    size="36"
-                >
-                </v-btn>
-                <v-btn
-                    icon="mdi-cart"
-                    theme="dark"
-                    color="#111111"
-                    size="36"
-                >
-                </v-btn>
-            </div>
-            <v-divider
-                vertical
-                color="#111111"
-                class="border-opacity-100 ml-4 mr-2"
-            />
             <v-btn
                 icon="mdi-menu"
                 variant="text"

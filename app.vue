@@ -11,6 +11,30 @@
             <v-list>
                 <img src="/logo.svg" class="drawer-logo" />
                 <v-divider class="my-3" />
+                <div class="d-flex px-3 justify-space-between">
+                    <v-btn
+                        icon="mdi-heart"
+                        theme="dark"
+                        color="#111111"
+                        size="34"
+                    >
+                    </v-btn>
+                    <v-btn
+                        icon="mdi-account"
+                        theme="dark"
+                        color="#111111"
+                        size="34"
+                    >
+                    </v-btn>
+                    <v-btn
+                        icon="mdi-cart"
+                        theme="dark"
+                        color="#111111"
+                        size="34"
+                    >
+                    </v-btn>
+                </div>
+                <v-divider class="my-3" />
                 <v-list-item @click="$router.push('/')"><p>BARBATI</p></v-list-item>
                 <v-list-item @click="$router.push('/')"><p>FEMEI</p></v-list-item>
                 <v-list-item @click="$router.push('/')"><p>INCALTAMINTE</p></v-list-item>
