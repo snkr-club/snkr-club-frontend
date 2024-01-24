@@ -186,4 +186,22 @@
     #big-container {
         flex: 1 1 65%;
     }
+
+    @media only screen and (max-width: 820px) {
+        .footer-inner {
+            padding-bottom: 3rem;
+        }
+        #small-container {
+            text-align: center;
+        }
+        .copyright-inner {
+            justify-content: center;
+            text-align: center;
+        }
+    }
+    @media only screen and (max-width: 450px) {
+        .footer-link-third-container {
+            text-align: center;
+        }
+    }
 </style>
