@@ -85,12 +85,6 @@
             <product-comp class="mb-10" :show-button="true" />
             <product-comp class="mb-10" :show-button="true" />
             <product-comp class="mb-10" :show-button="true" />
-            <product-comp class="mb-10" :show-button="true" />
-            <product-comp class="mb-10" :show-button="true" />
-            <product-comp class="mb-10" :show-button="true" />
-            <product-comp class="mb-10" :show-button="true" />
-            <product-comp class="mb-10" :show-button="true" />
-            <product-comp class="mb-10" :show-button="true" />
         </div>
     </div>
 </template>

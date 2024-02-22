@@ -8,7 +8,7 @@ import { NuxtLink } from '#build/components';
             <NuxtLink to="/mensection" class="test">
                 <p>BARBATI</p>
             </NuxtLink>
-            <NuxtLink to="/">
+            <NuxtLink to="/wemensection">
                 <p>FEMEI</p>
             </NuxtLink>
             <NuxtLink to="/">

@@ -36,7 +36,7 @@
                 </div>
                 <v-divider class="my-3" />
                 <v-list-item @click="$router.push('/mensection')"><p>BARBATI</p></v-list-item>
-                <v-list-item @click="$router.push('/')"><p>FEMEI</p></v-list-item>
+                <v-list-item @click="$router.push('/wemensection')"><p>FEMEI</p></v-list-item>
                 <v-list-item @click="$router.push('/')"><p>INCALTAMINTE</p></v-list-item>
                 <v-list-item @click="$router.push('/')"><p>ACCESORII</p></v-list-item>
                 <v-list-item @click="$router.push('/')">
