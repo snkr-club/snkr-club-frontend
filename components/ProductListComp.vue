@@ -1,6 +1,6 @@
 <template>
     <div class="product-list-outer">
-        <div class="filter-container">
+        <div class="filter-container mb-5">
             <h2>FILTRE</h2>
             <hr class="mt-2" />
             <div class="sizes-container mt-8">
@@ -105,10 +105,14 @@
   min-height: 30rem;
   display: flex;
   padding: 3rem 0;
+  gap: 2rem;
 }
 
 .filter-container {
-  flex: 1 1 25%;
+  border-right: 1px solid lightgray;
+  height: fit-content;
+  flex: 1 1 23%;
+  min-width: 15rem;
   h2 {
     font-size: 30px;
   }
@@ -123,10 +127,10 @@
 }
 
 .product-grid {
-  flex: 1 1 75%;
+  flex: 1 1 77%;
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1.8rem;
 }
 
 .filter-title {
@@ -152,6 +156,32 @@
 .price-filter-options {
   :deep(.v-checkbox) {
     height: 2rem;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .filter-container {
+    padding: 0 1rem;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .price-filter-options {
+    :deep(.v-checkbox) {
+      height: 3rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 810px) {
+  .product-grid {
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .product-list-outer {
+    display: initial;
   }
 }
 </style>

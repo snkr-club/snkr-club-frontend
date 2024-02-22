@@ -35,4 +35,10 @@
         font-size: 3.75rem;
       }
     }
+
+    @media only screen and (max-width: 1070px) {
+      .men-header-inner {
+        justify-content: center;
+      }
+    }
 </style>
