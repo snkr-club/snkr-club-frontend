@@ -104,6 +104,7 @@
 
 .filter-container {
   border-right: 1px solid lightgray;
+  padding-bottom: 6rem;
   height: fit-content;
   flex: 1 1 23%;
   min-width: 15rem;

@@ -17,7 +17,7 @@ import { NuxtLink } from '#build/components';
             <NuxtLink to="/">
                 <p>ACCESORII</p>
             </NuxtLink>
-            <NuxtLink to="/">
+            <NuxtLink to="/salesection">
                 <v-btn
                     theme="dark"
                     rounded
