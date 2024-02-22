@@ -7,11 +7,22 @@
         <h3 class="product-title">NIKE Air Force 1</h3>
         <p class="product-subtitle">Black/Mint Foam-Bright Spruce-Oil Green</p>
         <h2 class="product-price mt-2">729 RON</h2>
+        <v-btn
+            theme="dark"
+            class="mt-5 outline-effect-btn"
+            min-height="45"
+            variant="flat"
+            v-if="showButton"
+        >
+            VEZI PRODUSUL
+        </v-btn>
     </div>
 </template>
 
 <script setup lang="ts">
-
+    const props = defineProps([
+        "showButton"
+    ])
 </script>
 
 <style scoped lang="scss">

@@ -1,11 +1,11 @@
 import { NuxtLink } from '#build/components';
 <template>
     <div class="outer-container">
-        <div class="logo">
+        <div class="logo" @click="$router.push('/')">
             <img src="/logo.svg" />
         </div>
         <div class="option-selector">
-            <NuxtLink to="/" class="test">
+            <NuxtLink to="/mensection" class="test">
                 <p>BARBATI</p>
             </NuxtLink>
             <NuxtLink to="/">
@@ -99,6 +99,9 @@ const emit = defineEmits(["drawerToggle"])
 .logo {
   display: flex;
   align-items: center;
+  :hover {
+    cursor: pointer;
+  }
 }
 
 .option-selector {
