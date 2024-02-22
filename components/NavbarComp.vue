@@ -84,17 +84,21 @@ const emit = defineEmits(["drawerToggle"])
 <style scoped lang="scss">
 .outer-container {
     max-width: 74rem;
-    //width: auto;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between !important;
     align-items: center;
-    padding: 1rem;
+    padding: 1rem 0;
     position: fixed;
     top: 0;
     left: 50%;
     transform: translate(-50%);
-    gap: 6rem;
     z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
 }
 
 .option-selector {
@@ -128,7 +132,7 @@ const emit = defineEmits(["drawerToggle"])
     display: none !important;
 }
 
-@media only screen and (max-width: 1180px) {
+@media only screen and (max-width: 1070px) {
     .option-selector {
         display: none;
     }
