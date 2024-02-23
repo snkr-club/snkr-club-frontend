@@ -61,6 +61,7 @@ import { NuxtLink } from '#build/components';
                 theme="dark"
                 color="#111111"
                 size="36"
+                @click="() => cartDialog = true"
             >
             </v-btn>
         </div>
@@ -72,13 +73,14 @@ import { NuxtLink } from '#build/components';
             >
             </v-btn>
         </div>
+        <shopping-cart-dialog :dialog-model="cartDialog" @dialog-close="cartDialog = false" />
     </div>
 </template>
 
 <script setup lang="ts">
-
 const emit = defineEmits(["drawerToggle"])
 
+const cartDialog = ref(false)
 </script>
 
 <style scoped lang="scss">
