@@ -140,6 +140,7 @@ const cartDialog = ref(false)
 @media only screen and (max-width: 1070px) {
     .option-selector {
         display: none;
+      justify-content: space-between !important;
     }
     .outer-container {
         width: 100%;

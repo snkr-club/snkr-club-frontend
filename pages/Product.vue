@@ -164,22 +164,24 @@
 
     .product-main-image {
       max-width: 31rem;
-      max-height: 31rem;
       background-color: #f0f0f0;
+      width: auto !important;
     }
 
     .product-page-top {
       display: flex;
       flex-wrap: wrap;
+      gap: 1rem;
     }
 
     .image-container {
       max-width: 31rem;
-      max-height: 31rem;
+      min-width: 15rem;
     }
 
     .product-top-half {
-      flex: 1 1 50%;
+      flex: 1 1 49%;
+      max-width: 50%;
       h1 {
         font-size: 40px;
       }
@@ -232,6 +234,32 @@
       padding-bottom: 7rem;
       :deep(.v-tab) {
         flex: 1 1 33%;
+      }
+    }
+
+    @media only screen and (max-width: 1005px) {
+      .product-page-top {
+        justify-content: center !important;
+      }
+
+      .product-main-image {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .image-container {
+        max-width: 100%;
+        //max-height: 20rem;
+        max-height: 100%;
+      }
+
+      .product-top-half {
+        max-width: fit-content;
+        padding: 1rem;
+      }
+
+      .product-page-outer {
+        padding-top: 6rem;
       }
     }
 </style>
