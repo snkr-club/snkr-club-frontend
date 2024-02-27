@@ -27,7 +27,7 @@
   margin: 0 auto;
   padding-top: 7rem;
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   padding-bottom: 1.5rem;
   h1 {
     font-family: "Space Grotesk", sans-serif;
