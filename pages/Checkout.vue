@@ -81,4 +81,11 @@
         flex: 1 1 50%;
     }
 }
+
+@media only screen and (max-width: 550px) {
+    .form-container {
+        flex-wrap: wrap;
+        padding: 8px;
+    }
+}
 </style>
