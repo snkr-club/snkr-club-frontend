@@ -1,7 +1,7 @@
 <template>
     <v-card class="cart-container" elevation="0">
         <v-card-title>
-            <h3>Cosul tau</h3>
+            <h3><v-icon>mdi-cart</v-icon> Cosul tau</h3>
         </v-card-title>
         <v-card-subtitle>
             <h4>{{ items.length }} produse</h4>
