@@ -10,50 +10,10 @@
                         variant="flat"
                         border
                         size="40"
+                        v-for="(size, i) in productStore.availableSizes"
+                        :key="i"
                     >
-                        40
-                    </v-btn>
-                    <v-btn
-                        variant="flat"
-                        border
-                        size="40"
-                    >
-                        41
-                    </v-btn>
-                    <v-btn
-                        variant="flat"
-                        border
-                        size="40"
-                    >
-                        42
-                    </v-btn>
-                    <v-btn
-                        variant="flat"
-                        border
-                        size="40"
-                    >
-                        43
-                    </v-btn>
-                    <v-btn
-                        variant="flat"
-                        border
-                        size="40"
-                    >
-                        44
-                    </v-btn>
-                    <v-btn
-                        variant="flat"
-                        border
-                        size="40"
-                    >
-                        45
-                    </v-btn>
-                    <v-btn
-                        variant="flat"
-                        border
-                        size="40"
-                    >
-                        46
+                        {{ size }}
                     </v-btn>
                 </div>
             </div>
@@ -76,20 +36,28 @@
             </div>
         </div>
         <div class="product-grid">
-            <product-comp class="mb-10" :show-button="true" />
-            <product-comp class="mb-10" :show-button="true" />
-            <product-comp class="mb-10" :show-button="true" />
-            <product-comp class="mb-10" :show-button="true" />
-            <product-comp class="mb-10" :show-button="true" />
-            <product-comp class="mb-10" :show-button="true" />
-            <product-comp class="mb-10" :show-button="true" />
-            <product-comp class="mb-10" :show-button="true" />
-            <product-comp class="mb-10" :show-button="true" />
+            <product-comp
+                class="mb-10"
+                :show-button="true"
+                v-if="productStore.products"
+                v-for="(product, i) in productStore.products"
+                :key="i"
+                :product-data="product"
+            />
+            <div class="loader-container" v-if="loading">
+                <span class="loader"></span>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup>
+const props = defineProps([
+    "loading"
+])
+
+const productStore = useProductStore()
+
 </script>
 
 <style scoped lang="scss">
@@ -154,6 +122,13 @@
   }
 }
 
+.loader-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 25%;
+}
+
 @media only screen and (max-width: 1200px) {
   .filter-container {
     padding: 0 1rem;
@@ -179,4 +154,5 @@
     display: initial;
   }
 }
+
 </style>

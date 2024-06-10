@@ -4,9 +4,9 @@
             <v-img src="/product-dummy.png" class="product-image" />
             <v-btn icon="mdi-heart-outline" variant="text" class="heart-btn"></v-btn>
         </div>
-        <h3 class="product-title">NIKE Air Force 1</h3>
-        <p class="product-subtitle">Black/Mint Foam-Bright Spruce-Oil Green</p>
-        <h2 class="product-price mt-2">729 RON</h2>
+        <h3 class="product-title">{{ productData.title }}</h3>
+        <p class="product-subtitle">{{ productData.subtitle }}</p>
+        <h2 class="product-price mt-2">{{ productData.price }} RON</h2>
         <v-btn
             theme="dark"
             class="mt-5 outline-effect-btn"
@@ -21,7 +21,8 @@
 
 <script setup lang="ts">
     const props = defineProps([
-        "showButton"
+        "showButton",
+        "productData"
     ])
 </script>
 
