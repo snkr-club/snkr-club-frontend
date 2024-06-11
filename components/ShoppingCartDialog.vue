@@ -30,7 +30,7 @@
                             key="item.id"
                         >
                             <img :src="item.img" alt="shoe-image" class="product-cart-image" />
-                            <td>{{ item.name }}</td>
+                            <td>{{ item.title }} {{ item.size }}</td>
                             <td>{{ item.price }} RON</td>
                             <td>
                                 <v-btn
@@ -38,7 +38,7 @@
                                     size="25"
                                     theme="dark"
                                     class="mr-1"
-                                    @click="addQty(item.id)"
+                                    @click="addQty(item.id, item.size)"
                                 >
                                     <v-icon>mdi-plus</v-icon>
                                 </v-btn>
@@ -48,7 +48,7 @@
                                     size="25"
                                     theme="dark"
                                     class="ml-1"
-                                    @click="SubtractQty(item.id)"
+                                    @click="SubtractQty(item.id, item.size)"
                                 >
                                     <v-icon>mdi-minus</v-icon>
                                 </v-btn>
@@ -60,7 +60,7 @@
                                     size="25"
                                     theme="dark"
                                     class="ml-1"
-                                    @click="items = items.filter(itm => itm.id !== item.id)"
+                                    @click="removeItem(item.id, item.size)"
                                 >
                                     <v-icon>mdi-close</v-icon>
                                 </v-btn>
@@ -75,11 +75,13 @@
             <v-card-actions class="mt-4">
                 <v-btn
                     variant="tonal"
+                    @click="emit('dialogClose')"
                 >
                     Continua cumparaturile
                 </v-btn>
                 <v-btn
                     variant="tonal"
+                    v-if="items.length > 0"
                 >
                     Finalizeaza comanda
                 </v-btn>
@@ -96,40 +98,60 @@
         "dialogClose"
     ])
 
+    const cartStore = useCartStore()
     const cartDialogModel = ref(false)
-
-    const items = ref([
-        {
-            id: 0,
-            name: "Nike Air Force 1",
-            price: 300,
-            quantity: 1,
-            img: "/snkr-lazyload.png"
-        },
-        {
-            id: 1,
-            name: "Nike Air Max 720",
-            price: 550,
-            quantity: 1,
-            img: "/snkr-lazyload.png"
-        }
-    ])
+    const storedCart = ref([])
+    const loading = ref(false)
+    
+    const items = ref([])
 
     const subTotal = computed(() => items.value.reduce((accumulator, currentValue) => {
         return accumulator + currentValue.price * currentValue.quantity;
     }, 0))
 
-    const addQty = (id) => {
-        if (items.value.find((itm) => itm.id === id).quantity < 99)
-            items.value.find((itm) => itm.id === id).quantity++
+    const addQty = (id, size) => {
+        if (items.value.find((itm) => itm.id === id && itm.size === size).quantity < 99) {
+            items.value.find((itm) => itm.id === id && itm.size === size).quantity++
+            storedCart.value.find(itm => parseInt(itm.id) === parseInt(id) && parseInt(itm.size) === size).count++
+            localStorage.setItem("CART", JSON.stringify(storedCart.value))
+        }
     }
 
-    const SubtractQty = (id) => {
-        if (items.value.find((itm) => itm.id === id).quantity > 1)
-            items.value.find((itm) => itm.id === id).quantity--
+    const SubtractQty = (id, size) => {
+        if (items.value.find((itm) => itm.id === id && itm.size === size).quantity > 1) {
+            items.value.find((itm) => itm.id === id && itm.size === size).quantity--
+            storedCart.value.find(itm => parseInt(itm.id) === parseInt(id) && parseInt(itm.size) === size).count--
+            localStorage.setItem("CART", JSON.stringify(storedCart.value))
+        }
+    }
+    
+    const removeItem = (id, size) => {
+        const index = items.value.indexOf(items.value.find((itm) => itm.id === id && itm.size === size))
+        items.value.splice(index, 1)
+        storedCart.value.splice(index, 1)
+        localStorage.setItem("CART", JSON.stringify(storedCart.value))
     }
 
-    watch(() => props.dialogModel, (newVal) => cartDialogModel.value = newVal)
+    watch(() => props.dialogModel, async (newVal) => {
+        cartDialogModel.value = newVal
+        if (newVal) {
+            loading.value = true
+            storedCart.value = localStorage.getItem("CART") ? JSON.parse(localStorage.getItem("CART")) : []
+            if (storedCart.value.length > 0) {
+                let idArr = storedCart.value.map(itm => { return itm.id })
+                await cartStore.find(idArr)
+            }
+            items.value = storedCart.value.map((itm) => {
+                return {
+                    ...cartStore.products.find(product => parseInt(product.id) === parseInt(itm.id)),
+                    quantity: parseInt(itm.count),
+                    size: itm.size,
+                    img: "/snkr-lazyload.png",
+                }
+            })
+            loading.value = false
+        }
+    })
 </script>
 
 <style scoped lang="scss">

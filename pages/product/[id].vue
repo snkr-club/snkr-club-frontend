@@ -8,9 +8,9 @@
                     </div>
                 </div>
                 <div class="product-top-half pt-3">
-                    <h1>NIKE Free Terra Vista</h1>
-                    <p>Black/Mint Foam-Bright Spruce-Oil Green</p>
-                    <h1 class="mt-5">729 RON</h1>
+                    <h1 v-if="productStore.selectedProduct">{{ productStore.selectedProduct.title }}</h1>
+                    <p v-if="productStore.selectedProduct">{{ productStore.selectedProduct.subtitle }}</p>
+                    <h1 class="mt-5" v-if="productStore.selectedProduct">{{ productStore.selectedProduct.price }} RON</h1>
                     <hr class="mt-3" />
                     <div class="inner-flex-container mt-6">
                         <div class="inner-flex-child">
@@ -22,57 +22,19 @@
                         </div>
                         <div class="inner-flex-child-wide">
                             <h3>MARIME</h3>
-                            <div class="basic-flex-wrap mt-6">
+                            <v-btn-toggle v-model="toggle" class="basic-flex-wrap mt-6">
                                 <v-btn
                                     variant="flat"
                                     border
                                     size="40"
+                                    v-if="productStore.selectedProduct"
+                                    v-for="(size, i) in productStore.selectedProduct.sizes"
+                                    :value="size"
+                                    color="primary"
                                 >
-                                    40
+                                    {{ size }}
                                 </v-btn>
-                                <v-btn
-                                    variant="flat"
-                                    border
-                                    size="40"
-                                >
-                                    41
-                                </v-btn>
-                                <v-btn
-                                    variant="flat"
-                                    border
-                                    size="40"
-                                >
-                                    42
-                                </v-btn>
-                                <v-btn
-                                    variant="flat"
-                                    border
-                                    size="40"
-                                >
-                                    43
-                                </v-btn>
-                                <v-btn
-                                    variant="flat"
-                                    border
-                                    size="40"
-                                >
-                                    44
-                                </v-btn>
-                                <v-btn
-                                    variant="flat"
-                                    border
-                                    size="40"
-                                >
-                                    45
-                                </v-btn>
-                                <v-btn
-                                    variant="flat"
-                                    border
-                                    size="40"
-                                >
-                                    46
-                                </v-btn>
-                            </div>
+                            </v-btn-toggle>
                         </div>
                     </div>
                     <div class="btn-flex d-flex flex-wrap ga-6 mt-9">
@@ -81,6 +43,8 @@
                             class="mt-5 outline-effect-btn px-6"
                             min-height="60"
                             variant="flat"
+                            :disabled="!toggle"
+                            @click="addToCart"
                         >
                             <h2 class="btn-main-text font-weight-regular">ADAUGA IN COS</h2>
                         </v-btn>
@@ -112,7 +76,7 @@
                 </div>
             </div>
         </div>
-        <small-product-list-section title="Produse similare" />
+<!--        <small-product-list-section title="Produse similare" />-->
         <div class="product-page-tabs-container mt-8">
             <v-tabs v-model="tab" align-tabs="center">
                 <v-tab value="one">Despre produs</v-tab>
@@ -153,12 +117,25 @@ const productStore = useProductStore()
 const loading = ref(true)
 
 const tab = ref(null)
+const toggle = ref(null)
+
+const addToCart = () => {
+    let cart = localStorage.getItem("CART") ? JSON.parse(localStorage.getItem("CART")) : []
+    let count = 1
+    const existingItem = cart.find((itm) => parseInt(itm.id) === parseInt(productStore.selectedProduct.id) && parseInt(itm.size) === parseInt(toggle.value))
+    if (cart.length > 0 && existingItem) {
+        const index = cart.indexOf(existingItem)
+        cart.splice(index, 1)
+        count += parseInt(existingItem.count)
+    }
+    localStorage.setItem("CART", JSON.stringify([...cart, { id: productStore.selectedProduct.id, size: toggle.value, count: count }]))
+}
 
 onMounted(async() => {
 	loading.value = true
 	if (!parseInt(route.params.id)) return router.push('/')
 	await productStore.find(null, [route.params.id])
-	console.log(productStore.products[0])
+	console.log(productStore.selectedProduct)
 	loading.value = false
 })
 </script>

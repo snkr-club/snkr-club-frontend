@@ -13,6 +13,7 @@
             min-height="45"
             variant="flat"
             v-if="showButton"
+            @click="router.push(`/product/${productData && productData.id ? productData.id : 1}`)"
         >
             VEZI PRODUSUL
         </v-btn>
@@ -20,10 +21,12 @@
 </template>
 
 <script setup lang="ts">
-    const props = defineProps([
-        "showButton",
-        "productData"
-    ])
+const props = defineProps([
+    "showButton",
+    "productData"
+])
+
+const router = useRouter()
 </script>
 
 <style scoped lang="scss">

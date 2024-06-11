@@ -1,7 +1,9 @@
 <template>
     <div>
         <checkout-header />
-        <cart-inner-comp class="cart" />
+        <div class="cart-container">
+            <cart-inner-comp class="cart" />
+        </div>
         <div class="checkout-inner">
             <h3 class="mb-5 ml-1"><v-icon class="mr-2">mdi-account</v-icon> Date personale</h3>
             <div class="form-container">
@@ -98,6 +100,11 @@
     .form-half {
         flex: 1 1 50%;
     }
+}
+
+.cart-container {
+    max-width: 74rem;
+    margin: 0 auto;
 }
 
 @media only screen and (max-width: 550px) {
