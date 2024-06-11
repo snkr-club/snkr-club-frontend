@@ -147,7 +147,20 @@
 </template>
 
 <script setup lang="ts">
-    const tab = ref(null)
+const route = useRoute()
+const router = useRouter()
+const productStore = useProductStore()
+const loading = ref(true)
+
+const tab = ref(null)
+
+onMounted(async() => {
+	loading.value = true
+	if (!parseInt(route.params.id)) return router.push('/')
+	await productStore.find(null, [route.params.id])
+	console.log(productStore.products[0])
+	loading.value = false
+})
 </script>
 
 <style scoped lang="scss">

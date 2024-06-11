@@ -6,17 +6,18 @@ export const useProductStore = defineStore('products', {
 		availableSizes: [],
 	}),
 	actions: {
-		async find(type) {
+		async find(type = null, idList = null) {
 			this.products = []
 			let errors, data
 			console.log(type)
-			await fetch("http://192.168.0.115:6969/products/search", {
+			await fetch("http://localhost:6969/products/search", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json"
 				},
 				body: JSON.stringify({
-					type: type
+					type: type,
+					idList: idList,
 				}),
 			}).then((res) => res.json()).then((jsonRes) => data = jsonRes).catch((err) => errors = err)
 			if (!data.success) return "Eroare interna."
