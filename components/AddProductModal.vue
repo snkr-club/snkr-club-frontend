@@ -2,32 +2,32 @@
     <v-dialog v-model="dialogModel" max-width="1012">
         <v-card>
             <v-card-title>Adaugare produs</v-card-title>
-            <v-card-text class="d-flex align-center justify-start ga-2 flex-wrap">
-                <v-card
-                    width="100"
-                    height="100"
-                    class="pa-0 image-card"
-                    elevation="0"
-                >
-                    <v-img src="../public/snkr-lazyload.png"></v-img>
-                    <v-btn
-                        icon="mdi-close"
-                        variant="text"
-                        color="red"
-                    ></v-btn>
-                </v-card>
-                <v-btn
-                    variant="tonal"
-                    width="100"
-                    height="100"
-                >
-                    <v-icon size="45">mdi-image-plus</v-icon>
-                    <v-tooltip
-                        activator="parent"
-                        text="Adauga imagine"
-                    ></v-tooltip>
-                </v-btn>
-            </v-card-text>
+<!--            <v-card-text class="d-flex align-center justify-start ga-2 flex-wrap">-->
+<!--                <v-card-->
+<!--                    width="100"-->
+<!--                    height="100"-->
+<!--                    class="pa-0 image-card"-->
+<!--                    elevation="0"-->
+<!--                >-->
+<!--                    <v-img src="../public/snkr-lazyload.png"></v-img>-->
+<!--                    <v-btn-->
+<!--                        icon="mdi-close"-->
+<!--                        variant="text"-->
+<!--                        color="red"-->
+<!--                    ></v-btn>-->
+<!--                </v-card>-->
+<!--                <v-btn-->
+<!--                    variant="tonal"-->
+<!--                    width="100"-->
+<!--                    height="100"-->
+<!--                >-->
+<!--                    <v-icon size="45">mdi-image-plus</v-icon>-->
+<!--                    <v-tooltip-->
+<!--                        activator="parent"-->
+<!--                        text="Adauga imagine"-->
+<!--                    ></v-tooltip>-->
+<!--                </v-btn>-->
+<!--            </v-card-text>-->
             <v-card-text>
                 <v-row>
                     <v-col cols="6">

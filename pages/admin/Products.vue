@@ -14,10 +14,10 @@
                         variant="filled"
                         v-model="search"
                     ></v-text-field>
-                    <v-spacer></v-spacer>
-                    <v-btn @click="showAddDialog = true">
+                    <v-divider vertical class="mx-6"></v-divider>
+                    <v-btn @click="showAddDialog = true" height="100%">
                         <v-icon class="mr-2">mdi-plus</v-icon>
-                        Adauga produs nou
+                        Adauga produs
                     </v-btn>
                 </v-toolbar>
             </template>
