@@ -1,12 +1,13 @@
 <template>
   <NuxtLayout>
     <v-app>
-      <NavbarComp @drawer-toggle="drawer = !drawer" />
+      <NavbarComp @drawer-toggle="drawer = !drawer" v-if="!$route.path.includes('admin')" />
         <v-navigation-drawer
             v-model="drawer"
             temporary
             disable-route-watcher
             disable-resize-watcher
+            v-if="!$route.path.includes('admin')"
         >
             <v-list>
                 <img src="/logo.svg" class="drawer-logo" @click="$router.push('/')" />
@@ -61,8 +62,31 @@
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
-      <NuxtPage />
-      <footer-section />
+        
+        <v-navigation-drawer
+            disable-resize-watcher
+            temporary
+            v-model="adminDrawer"
+            v-if="$route.path.includes('admin')"
+        >
+            <h1 class="text-center mt-3">ADMIN</h1>
+            <v-divider class="my-3"></v-divider>
+            <v-list>
+                <v-list-item @click="$router.push('/admin/products')"><p>Produse</p></v-list-item>
+                <v-list-item @click="$router.push('/mensection')"><p>Comenzi</p></v-list-item>
+                <v-list-item @click="$router.push('/mensection')"><p>Categorii</p></v-list-item>
+                <v-list-item @click="$router.push('/mensection')"><p>Branduri</p></v-list-item>
+                <v-list-item @click="$router.push('/mensection')"><p>Reduceri</p></v-list-item>
+            </v-list>
+        </v-navigation-drawer>
+        <v-app-bar v-if="$route.path.includes('admin')">
+            <v-btn @click="adminDrawer = !adminDrawer">
+                <v-icon>mdi-menu</v-icon>
+            </v-btn>
+            SNKR CLUB ADMIN
+        </v-app-bar>
+        <NuxtPage />
+      <footer-section v-if="!$route.path.includes('admin')" />
     </v-app>
   </NuxtLayout>
 </template>
@@ -71,6 +95,7 @@
 const router = useRouter()
 
 const drawer = ref(false)
+const adminDrawer = ref(false)
 </script>
 
 <style scoped lang="scss">

@@ -43,6 +43,25 @@
                     ></v-text-field>
                 </div>
             </div>
+            <h3 class="mb-5 ml-1 mt-12"><v-icon class="mr-2">mdi-card-bulleted-outline</v-icon> Facturare</h3>
+            <div class="form-container">
+                <div class="form-half">
+                    <v-text-field
+                        label="Judet"
+                    ></v-text-field>
+                    <v-text-field
+                        label="Adresa"
+                    ></v-text-field>
+                </div>
+                <div class="form-half">
+                    <v-text-field
+                        label="Oras"
+                    ></v-text-field>
+                    <v-text-field
+                        label="Cod postal"
+                    ></v-text-field>
+                </div>
+            </div>
             <h3 class="mb-5 ml-1 mt-12"><v-icon class="mr-2">mdi-ticket</v-icon> Detii un cupon de reducere?</h3>
             <v-text-field
                 label="Cupon reducere"
