@@ -86,6 +86,12 @@
                 >
                 </v-textarea>
                 
+                <h4 class="my-3">Marimi</h4>
+                
+                <v-data-table
+                    :headers="sizeHeaders"
+                ></v-data-table>
+                
                 <h4 class="my-3">Variante produs</h4>
                 
                 <v-data-table
@@ -123,6 +129,16 @@ const headers = ref([
     { title: 'Tip', key: 'type' },
     { title: 'Pret', key: 'price' },
     { title: 'Status', key: 'status' },
+])
+
+const sizeHeaders = ref([
+    {
+        title: 'ID',
+        align: 'start',
+        key: 'id'
+    },
+    { title: 'Marime', key: 'size' },
+    { title: 'Stoc', key: 'Stock' },
 ])
 
 watch(() => props.showDialog, (newVal) => {

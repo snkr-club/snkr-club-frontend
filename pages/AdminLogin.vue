@@ -2,7 +2,7 @@
     <div class="admin-login-outer">
         <v-card width="500" elevation="7" class="rounded-xl">
             <v-card-title class="text-center">SNKR CLUB ADMIN</v-card-title>
-            <v-card-subtitle class="text-center mb-5">Logare cont administrare</v-card-subtitle>
+            <v-card-subtitle class="text-center mb-5">Conectare cont administrare</v-card-subtitle>
             <v-card-text>
                 <v-text-field
                     label="Utilizator"
