@@ -79,7 +79,7 @@
                 <v-list-item @click="$router.push('/mensection')"><p>Reduceri</p></v-list-item>
             </v-list>
         </v-navigation-drawer>
-        <v-app-bar v-if="$route.path.includes('admin')">
+        <v-app-bar v-if="$route.path.includes('admin') && !$route.path.includes('login')">
             <v-btn @click="adminDrawer = !adminDrawer">
                 <v-icon>mdi-menu</v-icon>
             </v-btn>
