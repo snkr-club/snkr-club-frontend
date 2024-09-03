@@ -1,16 +1,9 @@
-// import router from "nuxt/dist/app/plugins/router.js";
-// import {useToast} from "vue-toastification";
-const router = useRouter()
-// const toast = useToast()
 
 async function api(method, endpoint, payload) {
 
-    const logout = async () => {
-        localStorage.clear()
-        await router.push('/login')
-    }
 
-    const BASE_URL = "http://192.168.0.115:6969"
+    // const authStore = useAuthStore()
+    const BASE_URL = "http://185.104.181.219:9001"
 
     // eslint-disable-next-line no-async-promise-executor
     return new Promise(async (resolve, reject) => {
@@ -20,35 +13,23 @@ async function api(method, endpoint, payload) {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({
-                    session: JSON.parse(localStorage.getItem('user')).session,
+                body: payload ? JSON.stringify({
                     ...payload
-                })
+                }) : null
             });
 
             if (response.ok) {
                 const data = await response.json();
 
-                // Check if the status property is not 'success'
-                if (data.status && data.status !== 'success' ) {
-                    if(router.currentRoute.value.name === 'signup') {
-                        reject(`Va rugam verificati daca datele introduse sunt corecte`)
-                    } else {
-                        if (endpoint === "login.php") {
-                            reject(`Eroare de autentificare.`);
-                        } else if(data.cod && data.cod === "-3") {
-                            reject(`Sesiunea a expirat! Va rugam sa va conectati din nou.`);
-                            await logout()
-                        } else {
-                            reject(data.message)
-                            // toast.error(data.message)
-                        }
-                    }
+                // Check if the success property is true
+                if (!data.success) {
+                    if (data.message) reject(data.message)
+                    else reject("Internal error. Please try again later.")
                 } else {
                     resolve(data);
                 }
             } else {
-                reject(`Eroare: ${response.status} - ${response.statusText}`);
+                reject(`Internal Error: ${response.status} - ${response.statusText}`);
             }
         } catch (error) {
             reject(error.message);
