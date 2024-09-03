@@ -3,7 +3,8 @@
         <v-data-table
             :headers="headers"
             :search="search"
-            :items="dummyProducts"
+            :items="brandStore.brands"
+            :loading="brandStore.getBrandsLoading"
             @click:row="(event, target) => showDetailDialog = true"
         >
             <template v-slot:top>
@@ -27,6 +28,10 @@
 </template>
 
 <script setup>
+import {useBrandStore} from "../../stores/brandStore.js";
+import {onMounted} from "vue";
+
+const brandStore = useBrandStore()
 
 const headers = ref([
     {
@@ -49,6 +54,10 @@ const dummyProducts = ref([
         description: "Asdasdasdasdas",
     },
 ])
+
+onMounted(async () => {
+    await brandStore.getAll()
+})
 </script>
 
 <style scoped lang="scss">
