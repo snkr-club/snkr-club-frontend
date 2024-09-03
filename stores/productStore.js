@@ -1,4 +1,8 @@
 import {defineStore} from "pinia";
+import {useToast} from "vue-toastification";
+import api from "#build/api/api.js";
+
+const toast = useToast()
 
 export const useProductStore = defineStore('products', {
 	state: () => ({
@@ -32,7 +36,11 @@ export const useProductStore = defineStore('products', {
 		// }
 
 		async create(product) {
-			let createError
+			let createError = null
+
+			const response = await api("POST", "/products/create", {
+				...product
+			})
 		}
 	}
 })

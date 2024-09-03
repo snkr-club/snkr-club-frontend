@@ -64,12 +64,12 @@
                     </v-col>
                     <v-col cols="4">
                         <v-autocomplete
-                            label="Colectie"
+                            label="Categorie"
                         ></v-autocomplete>
                     </v-col>
                     <v-col cols="4">
                         <v-autocomplete
-                            label="Categorie"
+                            label="Colectie"
                         ></v-autocomplete>
                     </v-col>
                 </v-row>

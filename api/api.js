@@ -1,9 +1,8 @@
 
 async function api(method, endpoint, payload) {
 
-
     // const authStore = useAuthStore()
-    const BASE_URL = "http://185.104.181.219:9001"
+    const BASE_URL = "http://localhost:7430"
 
     // eslint-disable-next-line no-async-promise-executor
     return new Promise(async (resolve, reject) => {
