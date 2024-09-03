@@ -75,7 +75,7 @@
                 <v-list-item @click="$router.push('/admin/products')"><p>Produse</p></v-list-item>
                 <v-list-item @click="$router.push('/mensection')"><p>Comenzi</p></v-list-item>
                 <v-list-item @click="$router.push('/mensection')"><p>Categorii</p></v-list-item>
-                <v-list-item @click="$router.push('/mensection')"><p>Branduri</p></v-list-item>
+                <v-list-item @click="$router.push('/admin/brands')"><p>Branduri</p></v-list-item>
                 <v-list-item @click="$router.push('/mensection')"><p>Reduceri</p></v-list-item>
             </v-list>
         </v-navigation-drawer>
