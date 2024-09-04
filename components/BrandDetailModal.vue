@@ -1,9 +1,9 @@
 <template>
-    <v-dialog v-model="dialogModel" max-width="800" :persistent="brandStore.createBrandLoading">
+    <v-dialog v-model="dialogModel" max-width="800" :persistent="brandStore.updateBrandLoading">
         <v-card>
             <v-card-title>Adaugare brand</v-card-title>
             <v-card-text>
-                <v-form v-model="valid" @keydown.enter="saveNewBrand">
+                <v-form v-model="valid" @keydown.enter="saveBrand">
                     <v-text-field
                         label="Nume brand"
                         :rules="nameRules"
@@ -19,20 +19,20 @@
                         v-model="description"
                     ></v-text-field>
                 </v-form>
-                
+            
             </v-card-text>
             <v-card-actions>
                 <v-spacer />
                 <v-btn
                     :disabled="!valid"
-                    @click="saveNewBrand"
-                    :loading="brandStore.createBrandLoading"
+                    @click="saveBrand"
+                    :loading="brandStore.updateBrandLoading"
                 >
                     SALVEAZA
                 </v-btn>
                 <v-btn
                     @click="emit('dialogClosed')"
-                    :disabled="brandStore.createBrandLoading"
+                    :disabled="brandStore.updateBrandLoading"
                 >
                     ANULEAZA
                 </v-btn>
@@ -48,6 +48,7 @@ const brandStore = useBrandStore()
 
 const props = defineProps([
     "showDialog",
+    "selectedBrand"
 ])
 
 const emit = defineEmits([
@@ -57,8 +58,8 @@ const emit = defineEmits([
 const dialogModel = ref(props.showDialog)
 const valid = ref(false)
 
-const name = ref("")
-const description = ref("")
+const name = ref(props.selectedBrand.name)
+const description = ref(props.selectedBrand.description)
 
 const nameRules = ref([
     v => !!v || 'Acest camp este obligatoriu.',
@@ -72,14 +73,19 @@ const descriptionRules = ref([
     v => (v && v.length <= 255) || 'Lungimea maxima este de 255 de caractere',
 ])
 
-const saveNewBrand = async () => {
+const saveBrand = async () => {
     if (!valid.value) return
-    await brandStore.create(name.value, description.value)
+    await brandStore.update(props.selectedBrand.id, name.value, description.value)
     emit("dialogClosed")
 }
 
 watch(() => props.showDialog, (newVal) => {
     dialogModel.value = newVal
+})
+
+watch(() => props.selectedBrand, (newVal) => {
+    name.value = newVal.name
+    description.value = newVal.description
 })
 
 watch(() => dialogModel.value, (newVal) => {

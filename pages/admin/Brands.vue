@@ -5,7 +5,7 @@
             :search="search"
             :items="brandStore.brands"
             :loading="brandStore.getBrandsLoading"
-            @click:row="(event, target) => showDetailDialog = true"
+            @click:row="(event, target) => editBrand(target.item)"
         >
             <template v-slot:top>
                 <v-toolbar flat class="pr-3">
@@ -24,7 +24,15 @@
             </template>
         </v-data-table>
     </div>
-    <add-brand-modal :show-dialog="showAddDialog"  @dialog-closed="showAddDialog = false" />
+    <add-brand-modal
+        :show-dialog="showAddDialog"
+        @dialog-closed="showAddDialog = false"
+    />
+    <brand-detail-modal
+        :show-dialog="showDetailDialog"
+        :selected-brand="selectedBrand"
+        @dialog-closed="showDetailDialog = false"
+    />
 </template>
 
 <script setup>
@@ -46,14 +54,15 @@ const headers = ref([
 const search = ref("")
 const showAddDialog = ref(false)
 const showDetailDialog = ref(false)
+const selectedBrand = ref({
+    name: "",
+    description: ""
+})
 
-const dummyProducts = ref([
-    {
-        id: 1,
-        name: "Nike",
-        description: "Asdasdasdasdas",
-    },
-])
+const editBrand = (brand) => {
+    selectedBrand.value = {...brand}
+    showDetailDialog.value = true
+}
 
 onMounted(async () => {
     await brandStore.getAll()

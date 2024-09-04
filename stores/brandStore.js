@@ -10,6 +10,7 @@ export const useBrandStore = defineStore('brands', {
 
 		getBrandsLoading: false,
 		createBrandLoading: false,
+		updateBrandLoading: false,
 	}),
 	actions: {
 		async getAll() {
@@ -45,5 +46,25 @@ export const useBrandStore = defineStore('brands', {
 			this.brands = [...this.brands, response.body]
 			this.createBrandLoading = false
 		},
+
+		async update(brandId, name, description) {
+			let updateBrandError = null
+
+			const response = await api("PUT", `/brands/${brandId}`, {
+				name,
+				description
+			}).catch((err) => updateBrandError = err)
+
+			if (updateBrandError || !response.body)
+				return toast.error(
+					updateBrandError
+					? updateBrandError
+					: "Eroare interna"
+				)
+
+			toast.success(response.message)
+			const index = this.brands.indexOf(this.brands.find(item => item.id === brandId))
+			this.brands[index] = response.body
+		}
 	}
 })
