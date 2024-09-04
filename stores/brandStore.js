@@ -9,6 +9,7 @@ export const useBrandStore = defineStore('brands', {
 		brands: [],
 
 		getBrandsLoading: false,
+		createBrandLoading: false,
 	}),
 	actions: {
 		async getAll() {
@@ -22,6 +23,27 @@ export const useBrandStore = defineStore('brands', {
 
 			this.brands = response.body
 			this.getBrandsLoading = false
+		},
+
+		async create(name, description) {
+			let createBrandError = null
+
+			this.createBrandLoading = true
+			const response = await api("POST", "/brands", {
+				name,
+				description
+			}).catch((err) => createBrandError = err)
+
+			if (createBrandError || !response.body)
+				return toast.error(
+					createBrandError
+					? createBrandError
+					: "Eroare interna"
+				)
+
+			toast.success(response.message)
+			this.brands = [...this.brands, response.body]
+			this.createBrandLoading = false
 		},
 	}
 })
