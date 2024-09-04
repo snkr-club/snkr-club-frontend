@@ -1,7 +1,7 @@
 <template>
     <v-dialog v-model="dialogModel" max-width="800" :persistent="brandStore.updateBrandLoading">
         <v-card>
-            <v-card-title>Adaugare brand</v-card-title>
+            <v-card-title>Detalii brand</v-card-title>
             <v-card-text>
                 <v-form v-model="valid" @keydown.enter="saveBrand">
                     <v-text-field

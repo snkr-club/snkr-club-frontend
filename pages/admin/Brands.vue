@@ -5,7 +5,6 @@
             :search="search"
             :items="brandStore.brands"
             :loading="brandStore.getBrandsLoading"
-            @click:row="(event, target) => editBrand(target.item)"
         >
             <template v-slot:top>
                 <v-toolbar flat class="pr-3">
@@ -22,6 +21,20 @@
                     </v-btn>
                 </v-toolbar>
             </template>
+            
+            <template v-slot:item.actions="{ item }">
+                <v-icon
+                    class="mr-2"
+                    @click="editBrand(item)"
+                >
+                    mdi-pencil-outline
+                </v-icon>
+                <v-icon
+                    @click="openDeleteModalForBrand(item)"
+                >
+                    mdi-delete-outline
+                </v-icon>
+            </template>
         </v-data-table>
     </div>
     <add-brand-modal
@@ -32,6 +45,12 @@
         :show-dialog="showDetailDialog"
         :selected-brand="selectedBrand"
         @dialog-closed="showDetailDialog = false"
+    />
+    <delete-confirmation-modal
+        :show-dialog="showDeleteModal"
+        :loading="brandStore.deleteBrandLoading"
+        @dialog-closed="showDeleteModal = false"
+        @delete-confirmed="deleteBrand"
     />
 </template>
 
@@ -49,6 +68,7 @@ const headers = ref([
     },
     { title: 'Nume', key: 'name' },
     { title: 'Descriere', key: 'description' },
+    { title: 'Actiuni', key: 'actions', sortable: false },
 ])
 
 const search = ref("")
@@ -59,9 +79,22 @@ const selectedBrand = ref({
     description: ""
 })
 
+const showDeleteModal = ref(false)
+const deleteThisBrandId = ref(-1)
+
 const editBrand = (brand) => {
     selectedBrand.value = {...brand}
     showDetailDialog.value = true
+}
+
+const openDeleteModalForBrand = (brand) => {
+    deleteThisBrandId.value = brand.id
+    showDeleteModal.value = true
+}
+
+const deleteBrand = async () => {
+    await brandStore.delete(deleteThisBrandId.value)
+    showDeleteModal.value = false
 }
 
 onMounted(async () => {

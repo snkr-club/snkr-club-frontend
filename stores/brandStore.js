@@ -11,6 +11,7 @@ export const useBrandStore = defineStore('brands', {
 		getBrandsLoading: false,
 		createBrandLoading: false,
 		updateBrandLoading: false,
+		deleteBrandLoading: false,
 	}),
 	actions: {
 		async getAll() {
@@ -65,6 +66,20 @@ export const useBrandStore = defineStore('brands', {
 			toast.success(response.message)
 			const index = this.brands.indexOf(this.brands.find(item => item.id === brandId))
 			this.brands[index] = response.body
-		}
+		},
+
+		async delete(brandId) {
+			let deleteBrandError = null
+
+			this.deleteBrandLoading = true
+			const response = await api("DELETE", `/brands/${brandId}`)
+				.catch((err) => deleteBrandError = err)
+
+			if (deleteBrandError) return toast.error(deleteBrandError)
+
+			this.deleteBrandLoading = false
+			toast.success(response.message)
+			this.brands = this.brands.filter(item => item.id !== brandId)
+		},
 	}
 })
