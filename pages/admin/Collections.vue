@@ -3,13 +3,13 @@
         <v-data-table
             :headers="headers"
             :search="search"
-            :items="categoryStore.categories"
-            :loading="categoryStore.getLoading"
+            :items="collectionStore.collections"
+            :loading="collectionStore.getLoading"
         >
             <template v-slot:top>
                 <v-toolbar flat class="pr-3">
                     <v-text-field
-                        label="Cauta categorie"
+                        label="Cauta colectie"
                         hide-details
                         variant="filled"
                         v-model="search"
@@ -17,13 +17,17 @@
                     <v-divider vertical class="mx-6"></v-divider>
                     <v-btn @click="showAddDialog = true" height="100%">
                         <v-icon class="mr-2">mdi-plus</v-icon>
-                        Adauga categorie
+                        Adauga colectie
                     </v-btn>
                 </v-toolbar>
             </template>
             
             <template v-slot:item.brandId="{ item }">
                 {{ brandStore.brands.find(brand => brand.id === item.brandId)?.name }}
+            </template>
+            
+            <template v-slot:item.categoryId="{ item }">
+                {{ categoryStore.categories.find(category => category.id === item.categoryId)?.name }}
             </template>
             
             <template v-slot:item.actions="{ item }">
@@ -41,18 +45,18 @@
             </template>
         </v-data-table>
     </div>
-    <add-category-modal
+    <add-collection-modal
         :show-dialog="showAddDialog"
         @dialog-closed="showAddDialog = false"
     />
-    <category-detail-modal
+    <collection-detail-modal
         :show-dialog="showDetailDialog"
         :selected-item="selectedItem"
         @dialog-closed="showDetailDialog = false"
     />
     <delete-confirmation-modal
         :show-dialog="showDeleteModal"
-        :loading="categoryStore.deleteLoading"
+        :loading="collectionStore.deleteLoading"
         @dialog-closed="showDeleteModal = false"
         @delete-confirmed="deleteItem"
     />
@@ -60,11 +64,13 @@
 
 <script setup>
 import {useBrandStore} from "../../stores/brandStore.js";
-import {onMounted} from "vue";
 import {useCategoryStore} from "../../stores/categoryStore.js";
+import {useCollectionStore} from "../../stores/collectionStore.js";
+import {onMounted} from "vue";
 
 const brandStore = useBrandStore()
 const categoryStore = useCategoryStore()
+const collectionStore = useCollectionStore()
 
 const headers = ref([
     {
@@ -75,6 +81,7 @@ const headers = ref([
     { title: 'Nume', key: 'name' },
     { title: 'Descriere', key: 'description' },
     { title: 'Brand', key: 'brandId' },
+    { title: 'Categorie', key: 'categoryId' },
     { title: 'Actiuni', key: 'actions', sortable: false },
 ])
 
@@ -84,7 +91,8 @@ const showDetailDialog = ref(false)
 const selectedItem = ref({
     name: "",
     description: "",
-    brandId: null
+    brandId: null,
+    categoryId: null,
 })
 
 const showDeleteModal = ref(false)
@@ -101,13 +109,14 @@ const openDeleteModalForItem = (item) => {
 }
 
 const deleteItem = async () => {
-    await categoryStore.delete(deleteThisItemId.value)
+    await collectionStore.delete(deleteThisItemId.value)
     showDeleteModal.value = false
 }
 
 onMounted(async () => {
     await brandStore.getAll()
     await categoryStore.getAll()
+    await collectionStore.getAll()
 })
 </script>
 
