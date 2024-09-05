@@ -1,15 +1,15 @@
 <template>
-    <div class="admin-brands-outer">
+    <div class="admin-outer">
         <v-data-table
             :headers="headers"
             :search="search"
-            :items="brandStore.brands"
-            :loading="brandStore.getBrandsLoading"
+            :items="categoryStore.categories"
+            :loading="categoryStore.getLoading"
         >
             <template v-slot:top>
                 <v-toolbar flat class="pr-3">
                     <v-text-field
-                        label="Cauta brand"
+                        label="Cauta categorie"
                         hide-details
                         variant="filled"
                         v-model="search"
@@ -17,48 +17,54 @@
                     <v-divider vertical class="mx-6"></v-divider>
                     <v-btn @click="showAddDialog = true" height="100%">
                         <v-icon class="mr-2">mdi-plus</v-icon>
-                        Adauga brand
+                        Adauga categorie
                     </v-btn>
                 </v-toolbar>
+            </template>
+            
+            <template v-slot:item.brandId="{ item }">
+                {{ brandStore.brands.find(brand => brand.id === item.brandId)?.name }}
             </template>
             
             <template v-slot:item.actions="{ item }">
                 <v-icon
                     class="mr-2"
-                    @click="editBrand(item)"
+                    @click="editItem(item)"
                 >
                     mdi-pencil-outline
                 </v-icon>
                 <v-icon
-                    @click="openDeleteModalForBrand(item)"
+                    @click="openDeleteModalForItem(item)"
                 >
                     mdi-delete-outline
                 </v-icon>
             </template>
         </v-data-table>
     </div>
-    <add-brand-modal
+    <add-category-modal
         :show-dialog="showAddDialog"
         @dialog-closed="showAddDialog = false"
     />
-    <brand-detail-modal
+    <category-detail-modal
         :show-dialog="showDetailDialog"
-        :selected-brand="selectedBrand"
+        :selected-item="selectedItem"
         @dialog-closed="showDetailDialog = false"
     />
     <delete-confirmation-modal
         :show-dialog="showDeleteModal"
-        :loading="brandStore.deleteBrandLoading"
+        :loading="categoryStore.deleteLoading"
         @dialog-closed="showDeleteModal = false"
-        @delete-confirmed="deleteBrand"
+        @delete-confirmed="deleteItem"
     />
 </template>
 
 <script setup>
 import {useBrandStore} from "../../stores/brandStore.js";
 import {onMounted} from "vue";
+import {useCategoryStore} from "../../stores/categoryStore.js";
 
 const brandStore = useBrandStore()
+const categoryStore = useCategoryStore()
 
 const headers = ref([
     {
@@ -68,42 +74,44 @@ const headers = ref([
     },
     { title: 'Nume', key: 'name' },
     { title: 'Descriere', key: 'description' },
+    { title: 'Brand', key: 'brandId' },
     { title: 'Actiuni', key: 'actions', sortable: false },
 ])
 
 const search = ref("")
 const showAddDialog = ref(false)
 const showDetailDialog = ref(false)
-const selectedBrand = ref({
+const selectedItem = ref({
     name: "",
     description: ""
 })
 
 const showDeleteModal = ref(false)
-const deleteThisBrandId = ref(-1)
+const deleteThisItemId = ref(-1)
 
-const editBrand = (brand) => {
-    selectedBrand.value = {...brand}
+const editItem = (item) => {
+    selectedItem.value = {...item}
     showDetailDialog.value = true
 }
 
-const openDeleteModalForBrand = (brand) => {
-    deleteThisBrandId.value = brand.id
+const openDeleteModalForItem = (item) => {
+    deleteThisItemId.value = item.id
     showDeleteModal.value = true
 }
 
-const deleteBrand = async () => {
-    await brandStore.delete(deleteThisBrandId.value)
+const deleteItem = async () => {
+    await categoryStore.delete(deleteThisItemId.value)
     showDeleteModal.value = false
 }
 
 onMounted(async () => {
     await brandStore.getAll()
+    await categoryStore.getAll()
 })
 </script>
 
 <style scoped lang="scss">
-.admin-brands-outer {
+.admin-outer {
     padding: 6rem;
     max-width: 95%;
 }

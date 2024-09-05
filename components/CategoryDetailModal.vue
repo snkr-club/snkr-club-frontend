@@ -1,11 +1,11 @@
 <template>
-    <v-dialog v-model="dialogModel" max-width="800" :persistent="brandStore.createBrandLoading">
+    <v-dialog v-model="dialogModel" max-width="800" :persistent="categoryStore.updateLoading">
         <v-card>
-            <v-card-title>Adaugare brand</v-card-title>
+            <v-card-title>Detalii categorie</v-card-title>
             <v-card-text>
-                <v-form v-model="valid" @keydown.enter="saveNewBrand">
+                <v-form v-model="valid" @keydown.enter="save">
                     <v-text-field
-                        label="Nume brand"
+                        label="Nume categorie"
                         :rules="nameRules"
                         class="mb-2"
                         counter="64"
@@ -13,26 +13,35 @@
                     ></v-text-field>
                     
                     <v-text-field
-                        label="Descriere brand"
+                        label="Descriere categorie"
                         :rules="descriptionRules"
                         counter="255"
                         v-model="description"
                     ></v-text-field>
+                    
+                    <v-autocomplete
+                        label="Selectare brand"
+                        :items="brandStore.brands"
+                        :rules="requiredRules"
+                        v-model="brandId"
+                        item-title="name"
+                        item-value="id"
+                    ></v-autocomplete>
                 </v-form>
-                
+            
             </v-card-text>
             <v-card-actions>
                 <v-spacer />
                 <v-btn
                     :disabled="!valid"
-                    @click="saveNewBrand"
-                    :loading="brandStore.createBrandLoading"
+                    @click="save"
+                    :loading="categoryStore.updateLoading"
                 >
                     SALVEAZA
                 </v-btn>
                 <v-btn
                     @click="emit('dialogClosed')"
-                    :disabled="brandStore.createBrandLoading"
+                    :disabled="categoryStore.updateLoading"
                 >
                     ANULEAZA
                 </v-btn>
@@ -43,11 +52,14 @@
 
 <script setup>
 import {useBrandStore} from "../stores/brandStore.js";
+import {useCategoryStore} from "../stores/categoryStore.js";
 
 const brandStore = useBrandStore()
+const categoryStore = useCategoryStore()
 
 const props = defineProps([
     "showDialog",
+    "selectedItem"
 ])
 
 const emit = defineEmits([
@@ -57,8 +69,9 @@ const emit = defineEmits([
 const dialogModel = ref(props.showDialog)
 const valid = ref(false)
 
-const name = ref("")
-const description = ref("")
+const name = ref(props.selectedItem.name)
+const description = ref(props.selectedItem.description)
+const brandId = ref(props.selectedItem.brandId)
 
 const nameRules = ref([
     v => !!v || 'Acest camp este obligatoriu.',
@@ -72,16 +85,31 @@ const descriptionRules = ref([
     v => (v && v.length <= 255) || 'Lungimea maxima este de 255 de caractere',
 ])
 
-const saveNewBrand = async () => {
+const requiredRules = ref([
+    v => !!v || 'Acest camp este obligatoriu.'
+])
+
+
+const save = async () => {
     if (!valid.value) return
-    await brandStore.create(name.value, description.value)
+    const temp = {
+        id: props.selectedItem.id,
+        name: name.value,
+        description: description.value,
+        brandId: brandId.value
+    }
+    await categoryStore.update(temp)
     emit("dialogClosed")
-    name.value = ""
-    description.value = ""
 }
 
 watch(() => props.showDialog, (newVal) => {
     dialogModel.value = newVal
+})
+
+watch(() => props.selectedItem, (newVal) => {
+    name.value = newVal.name
+    description.value = newVal.description
+    brandId.value = newVal.brandId
 })
 
 watch(() => dialogModel.value, (newVal) => {
