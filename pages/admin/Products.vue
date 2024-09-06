@@ -5,7 +5,7 @@
             :search="search"
             :items="productStore.products"
             :loading="loading"
-            @click:row="(event, target) => showDetailDialog = true"
+            @click:row="(event, target) => selectProduct(target.item.id)"
         >
             <template v-slot:top>
                 <v-toolbar flat class="pr-3">
@@ -40,10 +40,16 @@
                     {{ item.limited ? "DA" : "NU" }}
                 </v-chip>
             </template>
+            
+            <template v-slot:item.active="{ item }">
+                <v-chip :color="item.active ? 'green' : 'red'">
+                    {{ item.active ? "ACTIV" : "INACTIV" }}
+                </v-chip>
+            </template>
         </v-data-table>
     </div>
     <add-product-modal :show-dialog="showAddDialog" @dialog-closed="showAddDialog = false" />
-    <product-detail-modal :show-dialog="showDetailDialog" @dialog-closed="showDetailDialog = false" />
+    <product-detail-modal :show-dialog="showDetailDialog" @dialog-closed="showDetailDialog = false" :product-id="selectedProductId" />
 </template>
 
 <script setup>
@@ -66,7 +72,7 @@ const headers = ref([
     { title: 'Titlu', key: 'title' },
     { title: 'Tip', key: 'type' },
     { title: 'Pret', key: 'price' },
-    { title: 'Status', key: 'status' },
+    { title: 'Status', key: 'active' },
     { title: 'Brand', key: 'brandId' },
     { title: 'Categorie', key: 'categoryId' },
     { title: 'Colectie', key: 'collectionId' },
@@ -76,7 +82,13 @@ const headers = ref([
 const search = ref("")
 const showAddDialog = ref(false)
 const showDetailDialog = ref(false)
+const selectedProductId = ref(null)
 const loading = ref(false)
+
+const selectProduct = (productId) => {
+    selectedProductId.value = productId
+    showDetailDialog.value = true
+}
 
 onMounted(async () => {
     loading.value = true

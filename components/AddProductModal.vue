@@ -152,24 +152,24 @@ const priceRules = [
     v => /^-?\d+(\.\d{1,2})?$/.test(v) || 'Pretul trebuie sa fie un numar cu maxim 2 zecimale.',
 ]
 
-const productTypes = [
-    {
-        title: "BARBATI",
-        value: "B"
-    },
-    {
-        title: "FEMEI",
-        value: "F"
-    },
-    {
-        title: "UNISEX",
-        value: "FM"
-    },
-]
-
 const requiredRules = ref([
     v => !!v || 'Acest camp este obligatoriu.'
 ])
+
+const productTypes = [
+    {
+        title: "BARBATI",
+        value: "MALE"
+    },
+    {
+        title: "FEMEI",
+        value: "FEMALE"
+    },
+    {
+        title: "UNISEX",
+        value: "UNISEX"
+    },
+]
 
 const dialogModel = ref(props.showDialog)
 const valid = ref(false)

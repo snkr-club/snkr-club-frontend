@@ -8,11 +8,23 @@ export const useProductStore = defineStore('products', {
 	state: () => ({
 		products: [],
 		availableSizes: [],
-		selectedProduct: null,
+		selectedProduct: {
+			title: "",
+			subtitle: "",
+			type: "",
+			description: "",
+			price: null,
+			brand_id: null,
+			collection_id: null,
+			category_id: null,
+			limited: false,
+			parentid: null,
+		},
 
 		// Loadings
 		getLoading: false,
 		createLoading: false,
+		updateLoading: false,
 	}),
 	actions: {
 		// async find(type = null, idList = null) {
@@ -69,6 +81,50 @@ export const useProductStore = defineStore('products', {
 			toast.success(response.message)
 			this.products = [...this.products, response.body]
 			return response.body
-		}
+		},
+
+		async update(product) {
+			let updateError = null
+
+			this.updateLoading = true
+			const response = await api("PATCH", `/products/${product.id}`, {
+				title: product.title,
+				price: product.price,
+				description: product.description,
+				limited: product.limited,
+				active: product.active,
+				brandId: product.brandId,
+				collectionId: product.collectionId,
+				categoryId: product.categoryId,
+				subtitle: product.subtitle,
+				type: product.type,
+			}).catch((err) => updateError = err)
+			this.updateLoading = false
+
+
+			if (updateError || !response.body) {
+				toast.error(updateError ? updateError : "Eroare interna. Va rugam reincercati.")
+				return null
+			}
+
+			toast.success(response.message)
+			const index = this.products.indexOf(this.products.find(prod => prod.id === product.id))
+			if (index !== -1) this.products[index] = response.body
+			return response.body
+		},
+
+		async getProduct(productId){
+			let getError = null
+
+			const response = await api("GET", `/products/${productId}`)
+				.catch((err) => getError = err)
+
+			if (getError || !response.body) {
+				toast.error(getError ? getError : "Eroare interna. Va rugam reincercati.")
+				return null
+			}
+
+			this.selectedProduct = response.body
+		},
 	}
 })
