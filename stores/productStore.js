@@ -8,7 +8,11 @@ export const useProductStore = defineStore('products', {
 	state: () => ({
 		products: [],
 		availableSizes: [],
-		selectedProduct: null
+		selectedProduct: null,
+
+		// Loadings
+		getLoading: false,
+		createLoading: false,
 	}),
 	actions: {
 		// async find(type = null, idList = null) {
@@ -35,12 +39,36 @@ export const useProductStore = defineStore('products', {
 		// 	if (errors) return errors
 		// }
 
+		async getAll() {
+			let getError = null
+
+			this.getLoading = true
+			const response = await api("GET", "/products")
+				.catch((err) => getError = err)
+			this.getLoading = false
+
+			if (getError) return toast.error(getError)
+
+			this.products = response.body
+		},
+
 		async create(product) {
 			let createError = null
 
+			this.createLoading = true
 			const response = await api("POST", "/products/create", {
 				...product
-			})
+			}).catch((err) => createError = err)
+			this.createLoading = false
+
+			if (createError || !response.body) {
+				toast.error(createError ? createError : "Eroare interna. Va rugam reincercati.")
+				return null
+			}
+
+			toast.success(response.message)
+			this.products = [...this.products, response.body]
+			return response.body
 		}
 	}
 })

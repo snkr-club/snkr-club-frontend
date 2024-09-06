@@ -1,7 +1,7 @@
 <template>
     <v-dialog v-model="dialogModel" max-width="800" :persistent="collectionStore.createLoading">
         <v-card>
-            <v-card-title>Detalii colectie</v-card-title>
+            <v-card-title>Adaugare colectie</v-card-title>
             <v-card-text>
                 <v-form v-model="valid" @keydown.enter="save">
                     <v-text-field

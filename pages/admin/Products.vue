@@ -3,7 +3,8 @@
         <v-data-table
             :headers="headers"
             :search="search"
-            :items="dummyProducts"
+            :items="productStore.products"
+            :loading="loading"
             @click:row="(event, target) => showDetailDialog = true"
         >
             <template v-slot:top>
@@ -21,6 +22,24 @@
                     </v-btn>
                 </v-toolbar>
             </template>
+            
+            <template v-slot:item.brandId="{ item }">
+                {{ brandStore.brands.find(brand => brand.id === item.brandId)?.name }}
+            </template>
+            
+            <template v-slot:item.categoryId="{ item }">
+                {{ categoryStore.categories.find(category => category.id === item.categoryId)?.name }}
+            </template>
+            
+            <template v-slot:item.collectionId="{ item }">
+                {{ collectionStore.collections.find(collection => collection.id === item.collectionId)?.name }}
+            </template>
+            
+            <template v-slot:item.limited="{ item }">
+                <v-chip :color="item.limited ? 'red' : 'grey'">
+                    {{ item.limited ? "DA" : "NU" }}
+                </v-chip>
+            </template>
         </v-data-table>
     </div>
     <add-product-modal :show-dialog="showAddDialog" @dialog-closed="showAddDialog = false" />
@@ -28,6 +47,16 @@
 </template>
 
 <script setup>
+import {useBrandStore} from "../../stores/brandStore.js";
+import {useCategoryStore} from "../../stores/categoryStore.js";
+import {useCollectionStore} from "../../stores/collectionStore.js";
+import {useProductStore} from "../../stores/productStore.js";
+
+const brandStore = useBrandStore()
+const categoryStore = useCategoryStore()
+const collectionStore = useCollectionStore()
+const productStore = useProductStore()
+
 const headers = ref([
     {
         title: 'ID',
@@ -38,28 +67,25 @@ const headers = ref([
     { title: 'Tip', key: 'type' },
     { title: 'Pret', key: 'price' },
     { title: 'Status', key: 'status' },
+    { title: 'Brand', key: 'brandId' },
+    { title: 'Categorie', key: 'categoryId' },
+    { title: 'Colectie', key: 'collectionId' },
+    { title: 'Editie limitata', key: 'limited' },
 ])
 
 const search = ref("")
 const showAddDialog = ref(false)
 const showDetailDialog = ref(false)
+const loading = ref(false)
 
-const dummyProducts = ref([
-    {
-        id: 1,
-        title: "Nike test ceva",
-        type: "M",
-        price: 250,
-        status: "ACTIV",
-    },
-    {
-        id: 2,
-        title: "Nike test ceva",
-        type: "F",
-        price: 250,
-        status: "ACTIV",
-    },
-])
+onMounted(async () => {
+    loading.value = true
+    await brandStore.getAll()
+    await categoryStore.getAll()
+    await collectionStore.getAll()
+    await productStore.getAll()
+    loading.value = false
+})
 </script>
 
 <style scoped lang="scss">
